@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
 import java.text.NumberFormat;
 
 /**
@@ -39,9 +40,32 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        int price = calculatePrice();
+        displayMessage(createOrderSummary(price));
+    }
+
+    /**
+     * Create summary of the order.
+     *
+     * @param price of the order
+     * @return text summary
+     */
+    public String createOrderSummary(int price) {
+        String priceMessage = "Name: Kaptain Kunal";
+        priceMessage += "\nQuantity: " + quantity;
+        priceMessage += "\nTotal $: " + price;
+        priceMessage += "\nThank you!";
+        return priceMessage;
+    }
+
+    /**
+     * Calculates the price of the order.
+     *
+     * @return total price
+     */
+    private int calculatePrice(){
         int price = quantity * 5;
-        String priceMessage = "Total: $" + price + "\nThank you!";
-        displayMessage(priceMessage);
+        return price;
     }
 
     /**
@@ -55,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method displays the price value on the screen.
      */
-    public void displayPrice(int number){
+    public void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
     }
