@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     boolean hasWhippedCream;
     boolean hasChocolate;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         EditText editText = findViewById(R.id.name);
         String name = editText.getText().toString();
         return name;
-
     }
 
     /**
