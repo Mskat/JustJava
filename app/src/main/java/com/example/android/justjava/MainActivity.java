@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -42,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
      */
     public void submitOrder(View view) {
         int price = calculatePrice();
+        String name = getName();
         addWhippedCream();
         addChocolate();
-        displayMessage(createOrderSummary(price));
+        displayMessage(createOrderSummary(price, name));
     }
 
     /**
@@ -53,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
      * @param price of the order
      * @return text summary
      */
-    public String createOrderSummary(int price) {
-        String priceMessage = "Name: Kaptain Kunal";
+    public String createOrderSummary(int price, String name) {
+        String priceMessage = "Name: " + name;
         priceMessage += "\nAdd whipped cream? " + hasWhippedCream;
         priceMessage += "\nAdd chocolate? " + hasChocolate;
         priceMessage += "\nQuantity: " + quantity;
@@ -71,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
     private int calculatePrice() {
         int price = quantity * 5;
         return price;
+    }
+
+    /**
+     * This method get the name from user
+     */
+    private String getName() {
+        EditText editText = findViewById(R.id.name_view);
+        String name = editText.getText().toString();
+        return name;
+
     }
 
     /**
