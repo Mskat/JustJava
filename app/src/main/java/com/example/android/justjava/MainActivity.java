@@ -12,8 +12,11 @@ import android.widget.TextView;
  */
 public class MainActivity extends AppCompatActivity {
 
+    //Stores an information of quantity of cups of coffee
     int quantity = 0;
+    //Stores an information is there whipped cream added or not
     boolean hasWhippedCream;
+    //Stores an information is there chocolate added or not
     boolean hasChocolate;
 
 
@@ -43,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
-        int price = calculatePrice();
-        String name = getName();
         addWhippedCream();
         addChocolate();
+        int price = calculatePrice(hasWhippedCream, hasChocolate);
+        String name = getName();
         displayMessage(createOrderSummary(price, name));
     }
 
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
      * Create summary of the order.
      *
      * @param price of the order
+     * @param name of the user
      * @return text summary
      */
     public String createOrderSummary(int price, String name) {
@@ -69,11 +73,26 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Calculates the price of the order.
      *
+     * @param hasWhippedCream is whether or not user choose whipped cream
+     * @param hasChocolate is whether or not user choose chocolate
      * @return total price
      */
-    private int calculatePrice() {
-        int price = quantity * 5;
-        return price;
+    private int calculatePrice(boolean hasWhippedCream, boolean hasChocolate) {
+        //Price of one cup of coffee
+        int basePrice = 5;
+
+        //Adds 1$ if user choose whipped cream
+        if(hasWhippedCream) {
+            basePrice += 1;
+        }
+
+        //Adds 2$ if user choose chcolate
+        if(hasChocolate) {
+            basePrice += 2;
+        }
+
+        //Calculates total price for the order
+        return quantity * basePrice;
     }
 
     /**
