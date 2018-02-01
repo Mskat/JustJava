@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
      * This method get the name from user
      */
     private String getName() {
-        EditText editText = findViewById(R.id.name_view);
+        EditText editText = findViewById(R.id.name);
         String name = editText.getText().toString();
         return name;
 
