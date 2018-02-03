@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the minus button is clicked.
      */
     public void decrement(View view) {
-        if (quantity == 1) {
+        if (quantity == 1 || quantity == 0) {
             // Show an error message as a toast
             Toast.makeText(this, getString(R.string.too_less_coffees), Toast.LENGTH_SHORT).show();
             // Exit this method early because there's nothing left to do
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.just_java_order_name) + " " + name);
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.just_java_order_name, name));
         intent.putExtra(Intent.EXTRA_TEXT, createOrderSummary(price, name));
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);

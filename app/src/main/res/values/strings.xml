@@ -8,11 +8,12 @@
     <string name="name">Name</string>
     <string name="order">Order</string>
     <string name="too_many_coffees">You cannot have more than 100 coffees</string>
-    <string name="too_less_coffees">You cannot have less than 1 coffees</string>
-    <string name="just_java_order_name">Just Java order for</string>
-    <string name="order_summary_name">Name: <xliff:g id="name" example="Amy">%s</xliff:g></string>
-    <string name="whipped_cream_name">Add whipped cream? <xliff:g id="name" example="Amy">%s</xliff:g></string>
-    <string name="chocolate_name">Add chocolate? <xliff:g id="name" example="Amy">%s</xliff:g></string>
-    <string name="quantity_name">Quantity: <xliff:g id="name" example="Amy">%s</xliff:g></string>
-    <string name="total_name">Total $: <xliff:g id="name" example="Amy">%s</xliff:g></string>
+    <string name="too_less_coffees">You cannot have less than 1 coffee</string>
+    <string name="just_java_order_name">Just Java order for <xliff:g example="Amy" id="name">%s</xliff:g></string>
+    <string name="order_summary_name">Name: <xliff:g example="Amy" id="name">%s</xliff:g></string>
+    <string name="whipped_cream_name">Add whipped cream? <xliff:g example="true" id="addWhippedCream">%b</xliff:g></string>
+    <string name="chocolate_name">Add chocolate? <xliff:g example="true" id="addChocolate">%b</xliff:g></string>
+    <string name="quantity_name">Quantity: <xliff:g example="2" id="quantity">%d</xliff:g></string>
+    <string name="total_name">Total $: <xliff:g example="$10" id="price">%s</xliff:g></string>
+
 </resources>
