@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public void increment(View view) {
         if (quantity == 100) {
             // Show an error message as a toast
-            Toast.makeText(this, "You cannot have more than 100 coffees", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.too_many_coffees), Toast.LENGTH_SHORT).show();
             // Exit this method early because there's nothing left to do
             return;
         }
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     public void decrement(View view) {
         if (quantity == 1) {
             // Show an error message as a toast
-            Toast.makeText(this, "You cannot have less than 1 coffee", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.too_less_coffees), Toast.LENGTH_SHORT).show();
             // Exit this method early because there's nothing left to do
             return;
         }
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + name);
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.just_java_order_name) + " " + name);
         intent.putExtra(Intent.EXTRA_TEXT, createOrderSummary(price, name));
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
@@ -83,12 +83,12 @@ public class MainActivity extends AppCompatActivity {
      * @return text summary
      */
     public String createOrderSummary(int price, String name) {
-        String priceMessage = "Name: " + name;
-        priceMessage += "\nAdd whipped cream? " + hasWhippedCream;
-        priceMessage += "\nAdd chocolate? " + hasChocolate;
-        priceMessage += "\nQuantity: " + quantity;
-        priceMessage += "\nTotal $: " + price;
-        priceMessage += "\nThank you!";
+        String priceMessage = getString(R.string.order_summary_name, name);
+        priceMessage += "\n" + getString(R.string.whipped_cream_name, hasWhippedCream);
+        priceMessage += "\n" + getString(R.string.chocolate_name, hasChocolate);
+        priceMessage += "\n" + getString(R.string.quantity_name, quantity);
+        priceMessage += "\n" + getString(R.string.total_name, price);
+        priceMessage += "\n" + getString(R.string.thank_you);
         return priceMessage;
     }
 
