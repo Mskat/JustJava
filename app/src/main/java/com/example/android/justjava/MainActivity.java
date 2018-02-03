@@ -1,5 +1,7 @@
 package com.example.android.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -63,14 +65,21 @@ public class MainActivity extends AppCompatActivity {
         addChocolate();
         int price = calculatePrice(hasWhippedCream, hasChocolate);
         String name = getName();
-        displayMessage(createOrderSummary(price, name));
+
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java order for " + name);
+        intent.putExtra(Intent.EXTRA_TEXT, createOrderSummary(price, name));
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 
     /**
      * Create summary of the order.
      *
      * @param price of the order
-     * @param name of the user
+     * @param name  of the user
      * @return text summary
      */
     public String createOrderSummary(int price, String name) {
@@ -87,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
      * Calculates the price of the order.
      *
      * @param hasWhippedCream is whether or not user choose whipped cream
-     * @param hasChocolate is whether or not user choose chocolate
+     * @param hasChocolate    is whether or not user choose chocolate
      * @return total price
      */
     private int calculatePrice(boolean hasWhippedCream, boolean hasChocolate) {
@@ -95,12 +104,12 @@ public class MainActivity extends AppCompatActivity {
         int basePrice = 5;
 
         //Adds 1$ if user choose whipped cream
-        if(hasWhippedCream) {
+        if (hasWhippedCream) {
             basePrice += 1;
         }
 
         //Adds 2$ if user choose chcolate
-        if(hasChocolate) {
+        if (hasChocolate) {
             basePrice += 2;
         }
 
@@ -139,13 +148,5 @@ public class MainActivity extends AppCompatActivity {
     private void display(int number) {
         TextView quantityTextView = findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
-    }
-
-    /**
-     * This method displays the given text on the screen.
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
     }
 }
